@@ -1,0 +1,51 @@
+{
+  "login":
+  {
+    "negative_test_case_01":
+    {
+      "username":"kumar",
+      "password": "administrator"
+    },
+    "negative_test_case_02":
+    {
+      "username":"administrator",
+      "password": "shani123"
+    },
+    "negative_test_case_03":
+    {
+      "username":"shani.kumar",
+      "password": "shani123"
+    },
+    "negative_test_case_04":
+    {
+      "username": "hi",
+      "password": "administrator"
+    },
+    "negative_test_case_05":
+    {
+      "username": "administrator",
+      "password": "hi"
+    },
+    "negative_test_case_06":
+    {
+      "username": "administrator",
+      "password": "ADMINISTRATOR"
+
+    },
+    "positive_test_case_01":
+    {
+      "username": "SRKADMINTEST",
+      "password": "SRKADMINTEST"
+    },
+    "alert_message":
+    {
+      "message":"Login failed, please enter the correct credentials and try again."
+    },
+    "Invalid":
+    {
+      "message": "Invalid credentials given!"
+    }
+
+  }
+
+}

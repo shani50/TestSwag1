@@ -1,0 +1,799 @@
+<html lang='en'><head><link href='prism/prism.css' rel='stylesheet' /></head><body><script src='prism/prism.js'></script><body><div><pre><code class='language-html'>&lt;html xmlns="http://www.w3.org/1999/xhtml" class="k-webkit k-webkit111"&gt;<br/>
+ &lt;head&gt;<br/>
+  &lt;title&gt;<br/>
+	SRKAY GATE PASS<br/>
+&lt;/title&gt;<br/>
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"&gt;<br/>
+  &lt;link rel="shortcut icon" href="../images/SRKAY_Watermak_logo.png" style="height: 16px; width: 16px;"&gt;<br/>
+  &lt;link href="../CSS/AMS.css" rel="stylesheet" type="text/css"&gt; <br/>
+  &lt;script src="../JS/jquery-1.11.1.min.js" type="text/javascript"&gt;&lt;/script&gt; <br/>
+  &lt;link href="../CSS/font-awesome.min.css" rel="stylesheet"&gt; <br/>
+  &lt;script type="text/javascript"&gt;<br/>
+<br/>
+        function LogOut() {<br/>
+            $('#btnLogout').click();<br/>
+        }<br/>
+        function CancelReturnKey(e) {<br/>
+            var keyCode = (window.event) ? e.which : e.keyCode;<br/>
+            if (keyCode == 13) {<br/>
+                return false;<br/>
+            }<br/>
+        }<br/>
+<br/>
+        (function ($) {<br/>
+            $.fn.menumaker = function (options) {<br/>
+                var cssmenu = $(this), settings = $.extend({<br/>
+                    format: "dropdown",<br/>
+                    sticky: false<br/>
+                }, options);<br/>
+                return this.each(function () {<br/>
+                    $(this).find(".button").on('click', function () {<br/>
+                        $(this).toggleClass('menu-opened');<br/>
+                        var mainmenu = $(this).next('ul');<br/>
+                        if (mainmenu.hasClass('open')) {<br/>
+                            mainmenu.slideToggle().removeClass('open');<br/>
+                        }<br/>
+                        else {<br/>
+                            mainmenu.slideToggle().addClass('open');<br/>
+                            if (settings.format === "dropdown") {<br/>
+                                mainmenu.find('ul').show();<br/>
+                            }<br/>
+                        }<br/>
+                    });<br/>
+                    cssmenu.find('li ul').parent().addClass('has-sub');<br/>
+                    multiTg = function () {<br/>
+                        cssmenu.find(".has-sub").prepend('&lt;span class="submenu-button"&gt;&lt;/span&gt;');<br/>
+                        cssmenu.find('.submenu-button').on('click', function () {<br/>
+                            $(this).toggleClass('submenu-opened');<br/>
+                            if ($(this).siblings('ul').hasClass('open')) {<br/>
+                                $(this).siblings('ul').removeClass('open').slideToggle();<br/>
+                            }<br/>
+                            else {<br/>
+                                $(this).siblings('ul').addClass('open').slideToggle();<br/>
+                            }<br/>
+                        });<br/>
+                    };<br/>
+                    if (settings.format === 'multitoggle') multiTg();<br/>
+                    else cssmenu.addClass('dropdown');<br/>
+                    if (settings.sticky === true) cssmenu.css('position', 'fixed');<br/>
+                    resizeFix = function () {<br/>
+                        var mediasize = 700;<br/>
+                        if ($(window).width() &gt; mediasize) {<br/>
+                            cssmenu.find('ul').show();<br/>
+                        }<br/>
+                        if ($(window).width() &lt;= mediasize) {<br/>
+                            cssmenu.find('ul').hide().removeClass('open');<br/>
+                        }<br/>
+                    };<br/>
+                    resizeFix();<br/>
+                    return $(window).on('resize', resizeFix);<br/>
+                });<br/>
+            };<br/>
+        })(jQuery);<br/>
+<br/>
+        (function ($) {<br/>
+            $(document).ready(function () {<br/>
+                $("#cssmenu").menumaker({<br/>
+                    format: "multitoggle"<br/>
+                });<br/>
+<br/>
+                $("#usericon").hover(function (e) {<br/>
+                    $('.userpanel').show();<br/>
+                }, function () {<br/>
+                    $('.userpanel').hide();<br/>
+                });<br/>
+<br/>
+            });<br/>
+        })(jQuery);<br/>
+<br/>
+<br/>
+<br/>
+    &lt;/script&gt; <br/>
+  &lt;link href="../Kendo/kendo.common-material.min.css" rel="stylesheet" type="text/css"&gt; <br/>
+  &lt;link href="../Kendo/kendo.material.min.css" rel="stylesheet" type="text/css"&gt; <br/>
+  &lt;script src="../Kendo/jquery.min.js" type="text/javascript"&gt;&lt;/script&gt; <br/>
+  &lt;script src="../Kendo/kendo.all.min.js" type="text/javascript"&gt;&lt;/script&gt; <br/>
+  &lt;link href="../CSS/jquery-ui-1.8.12.custom.css" rel="stylesheet" type="text/css"&gt; <br/>
+  &lt;script src="../JS/jquery-ui.min.js"&gt;&lt;/script&gt; <br/>
+  &lt;script src="../JS/jquery-ui-timepicker-addon.js" type="text/javascript"&gt;&lt;/script&gt; <br/>
+  &lt;script type="text/javascript"&gt;        <br/>
+        $(document).ready(function () {<br/>
+            $('#txtFromDate').datepicker(<br/>
+                {<br/>
+                    dateFormat: 'dd/mm/yy'<br/>
+                });<br/>
+<br/>
+            $('#txtToDate').datepicker(<br/>
+                {<br/>
+                    dateFormat: 'dd/mm/yy'<br/>
+                });<br/>
+<br/>
+            GatePassApprovalView();<br/>
+        });<br/>
+        $.browser = {};<br/>
+        (function () {<br/>
+            $.browser.msie = false;<br/>
+            $.browser.version = 0;<br/>
+            if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {<br/>
+                $.browser.msie = true;<br/>
+                $.browser.version = RegExp.$1;<br/>
+            }<br/>
+        })();<br/>
+    &lt;/script&gt; <br/>
+  &lt;style type="text/css" media="print"&gt;<br/>
+        @media print {<br/>
+            @page {<br/>
+                size: landscape;<br/>
+            }<br/>
+        }<br/>
+<br/>
+        .noDisplay {<br/>
+        }<br/>
+<br/>
+        .noPrint {<br/>
+            display: none;<br/>
+        }<br/>
+<br/>
+        .landScape {<br/>
+            -webkit-transform: rotate(15deg) scale(1.25, 0.5);<br/>
+            -moz-transform: rotate(15deg) scale(1.25, 0.5);<br/>
+            -ms-transform: rotate(15deg) scale(1.25, 0.5);<br/>
+            transform: rotate(15deg) scale(1.25, 0.5);<br/>
+        }<br/>
+<br/>
+        .pageBreak {<br/>
+            page-break-before: always;<br/>
+        }<br/>
+<br/>
+        td {<br/>
+            font-size: 14px;<br/>
+            color: #fff;<br/>
+            padding: 10px;<br/>
+        }<br/>
+<br/>
+        body {<br/>
+            color: black !important;<br/>
+        }<br/>
+<br/>
+        .tab td {<br/>
+            line-height: 30px;<br/>
+        }<br/>
+    &lt;/style&gt; <br/>
+  &lt;script type="text/javascript"&gt;<br/>
+<br/>
+        function ChkAll() {<br/>
+            if ($(".chkcommon:checked").length == $(".chkcommon").length && $(".chkcommon").length != 0) {<br/>
+                $("#chkAll").prop('checked', true);<br/>
+            }<br/>
+            else {<br/>
+                $("#chkAll").prop('checked', false);<br/>
+            }<br/>
+<br/>
+        }<br/>
+<br/>
+        var gridfile = [];<br/>
+        function GatePassApprovalView() {<br/>
+            $.ajax({<br/>
+                url: "GatePass.asmx/GatePassApprovalView",<br/>
+                data: { "FromDate": $('#txtFromDate').val(), "TODate": $('#txtToDate').val() },<br/>
+                type: "POST",<br/>
+                async: false,<br/>
+                success: function (data) {<br/>
+<br/>
+                    var datavalue = $(data).find('string').text();<br/>
+                    if (datavalue == "") return;<br/>
+                    gridfile = eval(datavalue);<br/>
+                    var parsed = JSON.parse(datavalue);<br/>
+<br/>
+                    var element = $("#filegridview").kendoGrid({<br/>
+                        dataSource: eval(datavalue),<br/>
+<br/>
+                        sortable: true,<br/>
+                        resizable: false,<br/>
+                        scrollable: true,<br/>
+                        width: 5100,<br/>
+                        height: 500,<br/>
+                        dataBound: function (e) {<br/>
+                            var filegridview = e.sender;<br/>
+                            if (filegridview.dataSource.total() == 0) {<br/>
+<br/>
+                            }<br/>
+                            $('.isnewarri').parent().prop("className", "ClsIsNewArri")<br/>
+                            $('.isholdcolor').parent().prop("className", "tempClass")<br/>
+<br/>
+                        },<br/>
+                        columns: [<br/>
+                            {<br/>
+                                template: "&lt;input type='checkbox' class='chkcommon' id='chk#=EMP_GATEPASS_NO#' title='Select Checkbox' onclick='ChkAll()' /&gt;",<br/>
+                                width: "40px",<br/>
+                                headerTemplate: "&lt;input type='checkbox' id='chkAll' onclick='SelectAllCheckboxesNew(this)' title='Select All Checkbox'/&gt;"<br/>
+                            },<br/>
+                            {<br/>
+                                field: "EMP_NO",<br/>
+                                title: "Emp No",<br/>
+                                width: "80px",<br/>
+                                align: "left"<br/>
+                            },<br/>
+                            {<br/>
+                                template: "# if(STATUS=='PENDING'){# &lt;a id='btn#=EMP_GATEPASS_NO#' onclick='ShowPopUp(\"#=EMP_GATEPASS_NO#\",\"#=EMP_NAME#\",\"#=LEAVE_STATUS#\",\"#=EMAILID#\",\"#=ENTRY_DATE#\")' class='btn'&gt; #=EMP_NAME# &lt;/a&gt; #}else{# #=EMP_NAME# #}#",<br/>
+                                headerTemplate: "Emp Name",<br/>
+                                width: "150px",<br/>
+                                align: "left"<br/>
+                            },<br/>
+                            {<br/>
+                                field: "LEAVE_STATUS",<br/>
+                                title: "Leave Status",<br/>
+                                align: "left",<br/>
+                                width: "90px"<br/>
+                            },<br/>
+                            {<br/>
+                                field: "REASON",<br/>
+                                title: "Reason",<br/>
+                                width: "100px",<br/>
+                                align: "left"<br/>
+                            },<br/>
+                            {<br/>
+                                field: "ENTRY_DATE",<br/>
+                                title: "Entry Date",<br/>
+                                width: "90px",<br/>
+                                align: "Center"<br/>
+                            },<br/>
+                            {<br/>
+                                field: "OUT_TIME",<br/>
+                                title: "Out time",<br/>
+                                width: "90px",<br/>
+                                align: "center"<br/>
+                            },<br/>
+                            {<br/>
+                                field: "IN_TIME",<br/>
+                                title: "In time",<br/>
+                                width: "90px",<br/>
+                                align: "center"<br/>
+                            },<br/>
+                            {<br/>
+                                field: "STATUS",<br/>
+                                title: "Status",<br/>
+                                width: "70px",<br/>
+                                align: "left"<br/>
+                            },<br/>
+                            {<br/>
+                                field: "REMARKS",<br/>
+                                Title: "Remarks",<br/>
+                                align: "left",<br/>
+                                width: "70px"<br/>
+                            }<br/>
+                            , {<br/>
+                                field: "APPROVED_BY",<br/>
+                                title: "Approved By",<br/>
+                                align: "left",<br/>
+                                width: "90px"<br/>
+                            }<br/>
+                        ]<br/>
+                    });<br/>
+                    ChkAll();<br/>
+                },<br/>
+                error: function (x, e) {<br/>
+                }<br/>
+            });<br/>
+            setTimeout(function () {<br/>
+                GatePassApprovalView();<br/>
+            }, 20000);<br/>
+        }<br/>
+<br/>
+        function DeleteEmpGatePassEntry() {<br/>
+            if (ChkIsSelect()) {<br/>
+                var result = confirm("You want to delete ?");<br/>
+                if (result) {<br/>
+                    $.ajax({<br/>
+<br/>
+                        url: "GatePass.asmx/DeleteEmpGatePassEntry",<br/>
+                        data: { 'EMP_GATEPASS_NO': $("#hdnEmpGatePassList").val() },<br/>
+                        type: "POST",<br/>
+                        async: false,<br/>
+                        success: function (data) {<br/>
+                            var datavalue = $(data).find('string').text();<br/>
+                            alert("Delete successfully");<br/>
+                            GatePassApprovalView();<br/>
+                            $("#hdnEmpGatePassList").val("");<br/>
+                        },<br/>
+                        error: function (x, e) {<br/>
+                        }<br/>
+                    });<br/>
+                }<br/>
+<br/>
+            }<br/>
+        }<br/>
+<br/>
+        function ShowPopUp(ID, NAME, LEAVE_STATUS, EMAILID,ENTRY_DATE) {<br/>
+            var window = $("#ApprovalPopup").kendoWindow({<br/>
+                title: "Gatepass Approval",<br/>
+                visible: false, //the window will not appear before its .open method is called<br/>
+                width: "320px",<br/>
+                height: "320px",<br/>
+                modal: true,<br/>
+                resizable: false,<br/>
+                draggable: false<br/>
+            }).data("kendoWindow");<br/>
+            window.center().open();<br/>
+            $("#hdnEmpGPno").val(ID);<br/>
+            $("#hdnEmpEID").val(EMAILID);<br/>
+            $("#hdnEDate").val(ENTRY_DATE);<br/>
+            $("#lblEmpName").text(NAME);<br/>
+            var status = "#" + LEAVE_STATUS;<br/>
+            $(status).prop("checked", true);<br/>
+        }<br/>
+<br/>
+        function ClosePopUp() {<br/>
+            $("#ApprovalPopup").data("kendoWindow").close();<br/>
+        }<br/>
+<br/>
+        function SelectAllCheckboxesNew(spanChk) {<br/>
+            var oItem = spanChk.children;<br/>
+            var theBox = (spanChk.type == "checkbox") ? spanChk : spanChk.children.item[0];<br/>
+            var grd = document.getElementById('filegridview');<br/>
+            xState = theBox.checked;<br/>
+            elm = theBox.form.elements;<br/>
+            for (i = 0; i &lt; elm.length; i++)<br/>
+                if (elm[i].type == "checkbox" && elm[i].id != theBox.id && elm[i].value != "NotSet") {<br/>
+                    if (elm[i].checked != xState) {<br/>
+                        elm[i].click();<br/>
+                    }<br/>
+                }<br/>
+        }<br/>
+<br/>
+        function ChkIsSelect() {<br/>
+            var EmpGatePassList = '';<br/>
+            if (ChkIsSelectCheck()) {<br/>
+                TargetBaseControl = document.getElementById('filegridview');<br/>
+                if (TargetBaseControl == null) return false;<br/>
+                var TargetChildControl = "chk";<br/>
+                var Inputs = TargetBaseControl.getElementsByTagName("input");<br/>
+                for (var n = 0; n &lt; Inputs.length; ++n) {<br/>
+                    if (Inputs[n].type == 'checkbox' && Inputs[n].id.indexOf(TargetChildControl, 0) &gt;= 0 && Inputs[n].checked && Inputs[n].id != 'chkAll') {<br/>
+                        VId = Inputs[n].id.replace('chk', '');<br/>
+                        EmpGatePassList = EmpGatePassList + VId + ',';<br/>
+                    }<br/>
+                }<br/>
+                EmpGatePassList = EmpGatePassList.substr(0, EmpGatePassList.lastIndexOf(","));<br/>
+                $("#hdnEmpGatePassList").val(EmpGatePassList);<br/>
+                return true;<br/>
+            } else {<br/>
+                return false;<br/>
+            }<br/>
+<br/>
+        }<br/>
+<br/>
+        function ChkIsSelectCheck() {<br/>
+            TargetBaseControl = document.getElementById('filegridview');<br/>
+            if (TargetBaseControl == null) return false;<br/>
+            var TargetChildControl = "chk";<br/>
+            var Inputs = TargetBaseControl.getElementsByTagName("input");<br/>
+            for (var n = 0; n &lt; Inputs.length; ++n)<br/>
+                if (Inputs[n].type == 'checkbox' && Inputs[n].id.indexOf(TargetChildControl, 0) &gt;= 0 && Inputs[n].checked && Inputs[n].id != 'chkAll') { CheckStone = 1; return true; }<br/>
+            alert('Select at least one Visitor!', "red", "");<br/>
+            CheckStone = 0;<br/>
+            return false;<br/>
+        }<br/>
+<br/>
+        function EmpGatePassFilterByDate() {<br/>
+            var ErrorMsg = '';<br/>
+            if ($('#txtFromDate').val() == "") {<br/>
+                ErrorMsg += 'Select From Date \n';<br/>
+            }<br/>
+            if ($('#txtToDate').val() == "") {<br/>
+                ErrorMsg += 'Select TO Date \n';<br/>
+            }<br/>
+            if (ErrorMsg != "") {<br/>
+                alert(ErrorMsg);<br/>
+            }<br/>
+            else {<br/>
+                GatePassApprovalView();<br/>
+            }<br/>
+        }<br/>
+<br/>
+        function ClearFilter() {<br/>
+            $('#txtFromDate').val("");<br/>
+            $('#txtToDate').val("");<br/>
+            GatePassApprovalView();<br/>
+        }<br/>
+<br/>
+        function GatePassApproval() {<br/>
+            $.ajax({<br/>
+                url: "GatePass.asmx/GatePassApproval",<br/>
+                data: {<br/>
+                    "EMP_GATEPASS_NO": $("#hdnEmpGPno").val(),<br/>
+                    "STATUS": $('input[name=rdoApproval]:checked').val(),<br/>
+                    "REMARKS": $("#txtRemark").val(),<br/>
+                    "LEAVE_STATUS": $('input[name=LStatus]:checked').val(),<br/>
+                    "EMAILID": $("#hdnEmpEID").val(),<br/>
+                    "EDATE": $("#hdnEDate").val(),<br/>
+                    "EMP_NAME": $("#lblEmpName").text()<br/>
+                },<br/>
+                type: "POST",<br/>
+                //async: false,<br/>
+                beforeSend: function () {<br/>
+                        $("#loading").css("display", "block");<br/>
+                    },<br/>
+                success: function (data) {<br/>
+                    $("#loading").css("display", "none");<br/>
+                    if ($(data).find('string').text() == 'SUCCESS') {<br/>
+                        $("#hdnEmpGPno").val('');<br/>
+                        $("#txtRemark").val('');<br/>
+                        $("#A").prop("checked", true);<br/>
+                        ClosePopUp();<br/>
+                        GatePassApprovalView();<br/>
+                        return true;<br/>
+                    }<br/>
+                    else if ($(data).find('string').text() == 'TIMEOUT') {<br/>
+                        window.location.href = "Login.aspx";<br/>
+                        return true;<br/>
+                    }<br/>
+                    else {<br/>
+                        alert("Oops! Somthing went wrong.")<br/>
+                        return false<br/>
+                    }<br/>
+                },<br/>
+                error: function (x, e) {<br/>
+                    return false;<br/>
+                }<br/>
+            });<br/>
+        }<br/>
+<br/>
+        function ConfirmExcel() {<br/>
+            var EmpGatePassList = '';<br/>
+            if (ChkIsSelectCheck()) {<br/>
+                TargetBaseControl = document.getElementById('filegridview');<br/>
+                if (TargetBaseControl == null) return false;<br/>
+                var TargetChildControl = "chk";<br/>
+                var Inputs = TargetBaseControl.getElementsByTagName("input");<br/>
+                for (var n = 0; n &lt; Inputs.length; ++n) {<br/>
+                    if (Inputs[n].type == 'checkbox' && Inputs[n].id.indexOf(TargetChildControl, 0) &gt;= 0 && Inputs[n].checked && Inputs[n].id != 'chkAll') {<br/>
+                        VId = Inputs[n].id.replace('chk', '');<br/>
+                        EmpGatePassList = EmpGatePassList + VId + ',';<br/>
+                    }<br/>
+                }<br/>
+                EmpGatePassList = EmpGatePassList.substr(0, EmpGatePassList.lastIndexOf(","));<br/>
+                $("#hdnEmpGatePassList").val(EmpGatePassList);<br/>
+                GatePassReportView();<br/>
+                return true;<br/>
+            } else {<br/>
+                return false;<br/>
+            }<br/>
+        }<br/>
+<br/>
+    &lt;/script&gt; <br/>
+  &lt;link href="../Kendo/kendo.material.min.css" rel="stylesheet" type="text/css"&gt;<br/>
+  &lt;link href="../Kendo/kendo.common-material.min.css" rel="stylesheet" type="text/css"&gt;<br/>
+  &lt;link href="../Kendo/kendo.default.min.css" rel="stylesheet" type="text/css"&gt;<br/>
+  &lt;link href="../Kendo/kendo.common.min.css" rel="stylesheet" type="text/css"&gt;<br/>
+  &lt;link href="CSS/Comman.css" rel="stylesheet" type="text/css"&gt; <br/>
+  &lt;style type="text/css"&gt;<br/>
+        .mand {<br/>
+            color: Red;<br/>
+        }<br/>
+<br/>
+        .grid {<br/>
+            width: 100%;<br/>
+        }<br/>
+<br/>
+            .grid td {<br/>
+                padding: .2em .3em !important;<br/>
+                line-height: 1.6em;<br/>
+                vertical-align: middle;<br/>
+                color: #333;<br/>
+                font-size: 10px;<br/>
+                text-align: center;<br/>
+                text-transform: uppercase;<br/>
+                border-color: #ccc;<br/>
+            }<br/>
+<br/>
+            .grid th {<br/>
+                padding: .2em .3em !important;<br/>
+                line-height: 1.6em;<br/>
+                vertical-align: middle;<br/>
+                color: #00459a; /*#113e01*/<br/>
+                font-size: 10px;<br/>
+                text-align: center;<br/>
+                text-transform: uppercase;<br/>
+                font-weight: 700 !important;<br/>
+                border-color: #ccc;<br/>
+            }<br/>
+<br/>
+        #header div.right {<br/>
+            margin-top: 25px;<br/>
+            height: 30px;<br/>
+            width: 65%;<br/>
+            float: left;<br/>
+        }<br/>
+<br/>
+        .btn-top-active {<br/>
+            background-color: #448D00;<br/>
+            color: #fff;<br/>
+            padding: 3px 10px;<br/>
+            font-size: 12px;<br/>
+            border: 0px;<br/>
+            outline: 0px;<br/>
+            border-radius: 3px;<br/>
+            cursor: pointer;<br/>
+            border-color: #448D00 !important;<br/>
+        }<br/>
+<br/>
+        .btn-top {<br/>
+            background-color: #fff;<br/>
+            padding: 7px 10px;<br/>
+            font-size: 12px;<br/>
+            border: 0px;<br/>
+            outline: 0px;<br/>
+            border-radius: 3px;<br/>
+            cursor: pointer;<br/>
+        }<br/>
+<br/>
+            .btn-top:hover {<br/>
+                color: #000 !important;<br/>
+            }<br/>
+<br/>
+        .btn-top-active:hover {<br/>
+            color: #000 !important;<br/>
+            background-color: #fff !important;<br/>
+            border-color: #ccc !important;<br/>
+        }<br/>
+<br/>
+        .fl-right {<br/>
+            float: right;<br/>
+        }<br/>
+<br/>
+        .main-menu {<br/>
+            position: relative;<br/>
+            z-index: 99;<br/>
+        }<br/>
+<br/>
+        .userpanel {<br/>
+            position: absolute;<br/>
+            border: 1px solid #ccc;<br/>
+            background: #fff;<br/>
+            border-radius: 5px;<br/>
+            right: 130px;<br/>
+            top: 30px;<br/>
+            display: none;<br/>
+            z-index: 9999999;<br/>
+            background-color: #fff;<br/>
+        }<br/>
+<br/>
+            .userpanel ul {<br/>
+                padding: 0;<br/>
+                margin: 0;<br/>
+            }<br/>
+<br/>
+            .userpanel li {<br/>
+                list-style: none;<br/>
+            }<br/>
+<br/>
+                .userpanel li a {<br/>
+                    padding: 6px 10px;<br/>
+                    color: #333;<br/>
+                    text-align: left;<br/>
+                    display: block;<br/>
+                }<br/>
+<br/>
+                    .userpanel li a:hover {<br/>
+                        background-color: #f47920;<br/>
+                        color: #fff;<br/>
+                    }<br/>
+<br/>
+        a.btn-user {<br/>
+            padding: 9px 9px;<br/>
+        }<br/>
+<br/>
+        .WMSTitle {<br/>
+            color: #f47920;<br/>
+        }<br/>
+<br/>
+        .toprightmenu {<br/>
+            display: block;<br/>
+            margin-top: 35px;<br/>
+            position: relative;<br/>
+            z-index: 991;<br/>
+        }<br/>
+<br/>
+            .toprightmenu a {<br/>
+                background-color: #f47920;<br/>
+                color: #ffffff;<br/>
+            }<br/>
+<br/>
+                .toprightmenu a.btn-top.active {<br/>
+                    background-color: #f47920;<br/>
+                }<br/>
+<br/>
+                .toprightmenu a:hover, .toprightmenu a:focus, .toprightmenu a:active {<br/>
+                    background-color: #f47920 !important;<br/>
+                    color: #ffffff !important;<br/>
+                }<br/>
+    &lt;/style&gt; <br/>
+ &lt;/head&gt; <br/>
+ &lt;body onkeypress="return CancelReturnKey(event);" style="width: 99.8%"&gt; <br/>
+  &lt;form method="post" action="./GatePassApproval.aspx" id="form1"&gt; <br/>
+   &lt;div class="aspNetHidden"&gt; <br/>
+    &lt;input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value=""&gt; <br/>
+    &lt;input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value=""&gt; <br/>
+    &lt;input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJNjkzMTM0MjU1D2QWAmYPZBYCAgMPZBYKAgUPDxYCHgRUZXh0BRpBRE1JTiBBRE1JTiAoU1JLQURNSU5URVNUKWRkAgcPZBYCZg8PFgIfAAUKMzEtMDMtMjAyM2RkAg0PDxYCHgdWaXNpYmxlaGRkAhEPDxYCHwFoZGQCFw9kFgQCBQ8PZBYCHghyZWFkb25seQUEdHJ1ZWQCCQ8PZBYCHwIFBHRydWVkZGKNTRfXkSarqIbqXaWsaAVKMreEZbRvq0i5IrePBkGa"&gt; <br/>
+   &lt;/div&gt; <br/>
+   &lt;script type="text/javascript"&gt;<br/>
+//&lt;![CDATA[<br/>
+var theForm = document.forms['form1'];<br/>
+if (!theForm) {<br/>
+    theForm = document.form1;<br/>
+}<br/>
+function __doPostBack(eventTarget, eventArgument) {<br/>
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {<br/>
+        theForm.__EVENTTARGET.value = eventTarget;<br/>
+        theForm.__EVENTARGUMENT.value = eventArgument;<br/>
+        theForm.submit();<br/>
+    }<br/>
+}<br/>
+//]]&gt;<br/>
+&lt;/script&gt; <br/>
+   &lt;script src="/WebResource.axd?d=AYrpBsUcv5zYM3B-S1y5pkJGamsGYr61dw9sVlGVmJ3KzooWxdrUqLEjpb_mnnSksQ55i07VZ4wP3ZV3D9ntn6gdV9L7usCET7NmJUzO1p41&amp;t=637814851746327080" type="text/javascript"&gt;&lt;/script&gt; <br/>
+   &lt;script src="/ScriptResource.axd?d=Pcb9Kl5566ztHWVcofEuIiAA4bZcJxnim0r6edCKKd_ADquYFMD0qoxlq0QP0HAROtZVxXmJbESiMd8yCppfxge9YoYCYmtHfaGeq4DcWcaXut3QGtQeO-WWsQb7rPN4R5XxkuQ7RZ9BVssAuiJndg2&amp;t=3a1336b1" type="text/javascript"&gt;&lt;/script&gt; <br/>
+   &lt;script type="text/javascript"&gt;<br/>
+//&lt;![CDATA[<br/>
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');<br/>
+//]]&gt;<br/>
+&lt;/script&gt; <br/>
+   &lt;script src="/ScriptResource.axd?d=IfMUWU28jp5o-ZXfJ3iShDq8jG8KvFXXWqtMHv9xAIfpKHfJ0SP6quBRYwaNGIwP1DAH_td_SbYpPe-RAC_jMSu4C4i0Rqu7QuE_2p8pT_NZGLvkEQRZjC2-CK9UuZXQ_dA2T2cmENn5sRuarwRVUw2&amp;t=3a1336b1" type="text/javascript"&gt;&lt;/script&gt; <br/>
+   &lt;div class="aspNetHidden"&gt; <br/>
+    &lt;input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="AB87B79D"&gt; <br/>
+    &lt;input type="hidden" name="__PREVIOUSPAGE" id="__PREVIOUSPAGE" value="3T3aZMNMgkV9cJ3Ugp5KXFr7aMOO1UsjspcIBA1Q2Un1HSnWoxs9w3mo59qlsv7bOsXgOfvtS87h2TMI7U1mm2nPopVwq-ox74HBzKploYg1"&gt; <br/>
+   &lt;/div&gt; <br/>
+   &lt;script type="text/javascript"&gt;<br/>
+//&lt;![CDATA[<br/>
+Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [], [], [], 90, 'ctl00');<br/>
+//]]&gt;<br/>
+&lt;/script&gt; <br/>
+   &lt;div id="loading" style="display: none"&gt; <br/>
+    &lt;img src="../images/Loader.gif"&gt; <br/>
+   &lt;/div&gt; <br/>
+   &lt;input type="submit" name="ctl00$btnLogout" value="Button" id="btnLogout" style="display: none;"&gt; <br/>
+   &lt;div class="wrapper"&gt; <br/>
+    &lt;div id="main"&gt; <br/>
+     &lt;div id="wrap"&gt; <br/>
+      &lt;div id="get-header"&gt; <br/>
+       &lt;div id="topLine"&gt; &lt;b&gt;Welcome : &lt;/b&gt; &lt;span id="lblUsername"&gt;ADMIN ADMIN (SRKADMINTEST)&lt;/span&gt; &nbsp;&nbsp;&nbsp; |&lt;span id="usericon"&gt;&lt;a class="btn-user" href="#"&gt; &lt;span style="background-color: #f47920; border-radius: 10px; display: inline-table; padding: 3px 4px;"&gt; &lt;img src="../images/ico-user.png" height="12px" width="12px"&gt; &lt;/span&gt;&lt;/a&gt; <br/>
+         &lt;div class="userpanel"&gt; <br/>
+          &lt;ul&gt; <br/>
+           &lt;li&gt;&lt;a href="EmpGatePassEntry.aspx"&gt;GatePass Entry&lt;/a&gt;&lt;/li&gt; <br/>
+           &lt;li&gt;&lt;a href="ChangePWD.aspx"&gt;Chanage Password&lt;/a&gt;&lt;/li&gt; <br/>
+           &lt;li&gt;&lt;a href="#" onclick="javascript:LogOut();"&gt;Logout&lt;/a&gt;&lt;/li&gt; <br/>
+          &lt;/ul&gt; <br/>
+         &lt;/div&gt; &lt;/span&gt;|&nbsp;&nbsp;&nbsp; &lt;b&gt;Date : &lt;/b&gt; &lt;span id="lblToday"&gt;&lt;span id="lblDate"&gt;31-03-2023&lt;/span&gt;&lt;/span&gt; <br/>
+        &lt;div class="clear"&gt;&lt;/div&gt; <br/>
+        &lt;div class="toprightmenu"&gt; &lt;a id="btn_GPassApproval" class="btn-top" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$btn_GPassApproval&quot;, &quot;&quot;, false, &quot;&quot;, &quot;GatePassApproval.aspx&quot;, false, true))"&gt;GATEPASS APPROVAL&lt;/a&gt; &lt;a id="btn_GatePassReport" class="btn-top" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$btn_GatePassReport&quot;, &quot;&quot;, false, &quot;&quot;, &quot;GatePassReport.aspx&quot;, false, true))"&gt;GATEPASS REPORT&lt;/a&gt; &lt;a id="btn_WFS" class="btn-top" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$btn_WFS&quot;, &quot;&quot;, false, &quot;&quot;, &quot;ViewVisitor.aspx&quot;, false, true))"&gt;VISITOR VIEW&lt;/a&gt; &lt;a id="btn_UEntry" class="btn-top" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$btn_UEntry&quot;, &quot;&quot;, false, &quot;&quot;, &quot;UserEntry.aspx&quot;, false, true))"&gt;USER ENTRY&lt;/a&gt; <br/>
+        &lt;/div&gt; <br/>
+       &lt;/div&gt; <br/>
+       &lt;div id="header"&gt; <br/>
+        &lt;div class="left" style="padding: 10px;"&gt; <br/>
+         &lt;img src="../images/VisitorLogo.png" alt="Logo"&gt; <br/>
+        &lt;/div&gt; <br/>
+        &lt;div class="fl-right"&gt; <br/>
+         &lt;div id="Menu" class="main-menu"&gt; <br/>
+         &lt;/div&gt; <br/>
+        &lt;/div&gt; <br/>
+       &lt;/div&gt; <br/>
+      &lt;/div&gt; <br/>
+      &lt;div id="ContainDetail"&gt; <br/>
+       &lt;div class="WMSTitle"&gt; &lt;span id="ContentPlaceHolder1_lblClientname" class="Lab"&gt;GatePass Approval View&lt;/span&gt; <br/>
+       &lt;/div&gt; <br/>
+       &lt;div class="mobpadd"&gt; <br/>
+        &lt;div class="popup" id="ApprovalPopup" style="display: none"&gt; <br/>
+         &lt;div class="popup-inner"&gt; <br/>
+          &lt;div class="approval_form"&gt; <br/>
+           &lt;br&gt; <br/>
+           &lt;div class="divform"&gt; &lt;span&gt;Employee : &lt;/span&gt; &lt;label id="lblEmpName" style="font-size: 14px; font-weight: bold; margin: 10px;"&gt;&lt;/label&gt; <br/>
+           &lt;/div&gt; <br/>
+           &lt;div class="divform"&gt; &lt;label class="label"&gt;Leave Status&lt;/label&gt; <br/>
+            &lt;input type="radio" name="LStatus" value="LeaveApplied" id="LeaveApplied"&gt; &lt;span&gt;Leave Applied&lt;/span&gt; <br/>
+            &lt;input type="radio" name="LStatus" value="Other" id="Other"&gt; &lt;span&gt;Other&lt;/span&gt; <br/>
+           &lt;/div&gt; <br/>
+           &lt;div class="divform"&gt; &lt;label class="label"&gt;Add Remark&lt;/label&gt; &lt;textarea rows="4" cols="50" id="txtRemark"&gt;&lt;/textarea&gt; <br/>
+            &lt;input type="hidden" id="hdnEmpGPno"&gt; <br/>
+            &lt;input type="hidden" id="hdnEmpEID"&gt; <br/>
+            &lt;input type="hidden" id="hdnEDate"&gt; <br/>
+           &lt;/div&gt; <br/>
+           &lt;div class="divform"&gt; &lt;label class="label"&gt;Approval Action&lt;/label&gt; <br/>
+            &lt;input type="radio" name="rdoApproval" id="A" value="APPROVED" checked&gt; &lt;span&gt;Approve&lt;/span&gt; <br/>
+            &lt;input type="radio" name="rdoApproval" id="R" value="REJECTED"&gt; &lt;span&gt;Reject&lt;/span&gt; <br/>
+           &lt;/div&gt; <br/>
+           &lt;div class="divform"&gt; <br/>
+            &lt;input type="submit" name="ctl00$ContentPlaceHolder1$btnApproval" value=" Submit" onclick="return GatePassApproval();" id="btnApproval" class="clsButton fa_input submit"&gt; <br/>
+           &lt;/div&gt; <br/>
+          &lt;/div&gt; <br/>
+         &lt;/div&gt; <br/>
+        &lt;/div&gt; <br/>
+        &lt;table width="100%"&gt; <br/>
+         &lt;tbody&gt;<br/>
+          &lt;tr&gt; <br/>
+           &lt;td&gt; <br/>
+            &lt;table class="visitor_div"&gt; <br/>
+             &lt;tbody&gt;<br/>
+              &lt;tr&gt; <br/>
+               &lt;td&gt; &lt;span&gt;From Date&lt;/span&gt; &lt;input name="ctl00$ContentPlaceHolder1$txtFromDate" type="text" id="txtFromDate" class="CLStxtOuttime hasDatepicker" readonly="true"&gt; &lt;/td&gt; <br/>
+               &lt;td&gt; &lt;span&gt;To Date&lt;/span&gt; &lt;input name="ctl00$ContentPlaceHolder1$txtToDate" type="text" id="txtToDate" class="CLStxtOuttime hasDatepicker" readonly="true"&gt; &lt;input id="btnFilter" type="button" value=" Show" class="clsButton fa_input" onclick="EmpGatePassFilterByDate();"&gt; &lt;input id="btnClear" type="button" value=" Clear" class="clsButton fa_input" onclick="ClearFilter();"&gt; &lt;input id="BtnDelete" type="button" value=" Delete" class="clsButton fa_input" onclick="DeleteEmpGatePassEntry();"&gt; &lt;/td&gt; <br/>
+               &lt;td&gt; &lt;input type="submit" name="ctl00$ContentPlaceHolder1$BtnExcel" value=" Export to Excel" onclick="return ConfirmExcel();" id="ContentPlaceHolder1_BtnExcel" class="clsButton fa_input mobwd"&gt; &lt;/td&gt; <br/>
+              &lt;/tr&gt; <br/>
+             &lt;/tbody&gt;<br/>
+            &lt;/table&gt; &lt;/td&gt; <br/>
+          &lt;/tr&gt; <br/>
+         &lt;/tbody&gt;<br/>
+        &lt;/table&gt; <br/>
+        &lt;div class="row"&gt; <br/>
+         &lt;div class="col-md-12 col-sm-12 col-xs-12"&gt; <br/>
+          &lt;div class="panel"&gt; <br/>
+           &lt;div class="panel-body gatepassgrid"&gt; <br/>
+            &lt;div id="filegridview" class="custom_kendo k-grid k-widget" data-role="grid" style="height: 500px;"&gt; <br/>
+             &lt;div class="k-grid-header" style="padding-right: 17px;"&gt;<br/>
+              &lt;div class="k-grid-header-wrap"&gt;<br/>
+               &lt;table role="grid"&gt;<br/>
+                &lt;colgroup&gt;<br/>
+                 &lt;col style="width:40px"&gt;<br/>
+                 &lt;col style="width:80px"&gt;<br/>
+                 &lt;col style="width:150px"&gt;<br/>
+                 &lt;col style="width:90px"&gt;<br/>
+                 &lt;col style="width:100px"&gt;<br/>
+                 &lt;col style="width:90px"&gt;<br/>
+                 &lt;col style="width:90px"&gt;<br/>
+                 &lt;col style="width:90px"&gt;<br/>
+                 &lt;col style="width:70px"&gt;<br/>
+                 &lt;col style="width:70px"&gt;<br/>
+                 &lt;col style="width:90px"&gt;<br/>
+                &lt;/colgroup&gt;<br/>
+                &lt;thead role="rowgroup"&gt;<br/>
+                 &lt;tr role="row"&gt;<br/>
+                  &lt;th role="columnheader" rowspan="1" data-index="0" id="609c23dc-95fd-4135-ac83-93e7657ae1c3" class="k-header"&gt;&lt;input type="checkbox" id="chkAll" onclick="SelectAllCheckboxesNew(this)" title="Select All Checkbox"&gt;&lt;/th&gt;<br/>
+                  &lt;th role="columnheader" data-field="EMP_NO" rowspan="1" data-title="Emp No" data-index="1" id="7fb8a4cc-98bd-4613-b0d0-ed3f61562702" class="k-header" data-role="columnsorter"&gt;&lt;a class="k-link" href="#"&gt;Emp No&lt;/a&gt;&lt;/th&gt;<br/>
+                  &lt;th role="columnheader" rowspan="1" data-index="2" id="277ac819-7e75-4083-8bc0-71c9068ac3f1" class="k-header"&gt;Emp Name&lt;/th&gt;<br/>
+                  &lt;th role="columnheader" data-field="LEAVE_STATUS" rowspan="1" data-title="Leave Status" data-index="3" id="bad55c97-3f7f-4c77-ab22-8555e401c8a9" class="k-header" data-role="columnsorter"&gt;&lt;a class="k-link" href="#"&gt;Leave Status&lt;/a&gt;&lt;/th&gt;<br/>
+                  &lt;th role="columnheader" data-field="REASON" rowspan="1" data-title="Reason" data-index="4" id="cdfbf226-6be1-48cb-8abc-5e2c4066fd12" class="k-header" data-role="columnsorter"&gt;&lt;a class="k-link" href="#"&gt;Reason&lt;/a&gt;&lt;/th&gt;<br/>
+                  &lt;th role="columnheader" data-field="ENTRY_DATE" rowspan="1" data-title="Entry Date" data-index="5" id="d592a367-54bb-4e06-bdc8-964a38e3c26c" class="k-header" data-role="columnsorter"&gt;&lt;a class="k-link" href="#"&gt;Entry Date&lt;/a&gt;&lt;/th&gt;<br/>
+                  &lt;th role="columnheader" data-field="OUT_TIME" rowspan="1" data-title="Out time" data-index="6" id="d78dd3c5-c64d-43de-a4a1-18585d0f40a3" class="k-header" data-role="columnsorter"&gt;&lt;a class="k-link" href="#"&gt;Out time&lt;/a&gt;&lt;/th&gt;<br/>
+                  &lt;th role="columnheader" data-field="IN_TIME" rowspan="1" data-title="In time" data-index="7" id="bf91104f-50de-4789-88e2-6b4fe40269ec" class="k-header" data-role="columnsorter"&gt;&lt;a class="k-link" href="#"&gt;In time&lt;/a&gt;&lt;/th&gt;<br/>
+                  &lt;th role="columnheader" data-field="STATUS" rowspan="1" data-title="Status" data-index="8" id="8d96d50a-e6e8-402e-b7dc-62a801d1c04b" class="k-header" data-role="columnsorter"&gt;&lt;a class="k-link" href="#"&gt;Status&lt;/a&gt;&lt;/th&gt;<br/>
+                  &lt;th role="columnheader" data-field="REMARKS" rowspan="1" data-index="9" id="139dc91a-27c4-4024-ac84-ee552dcbb1ac" class="k-header" data-role="columnsorter"&gt;&lt;a class="k-link" href="#"&gt;REMARKS&lt;/a&gt;&lt;/th&gt;<br/>
+                  &lt;th role="columnheader" data-field="APPROVED_BY" rowspan="1" data-title="Approved By" data-index="10" id="1454f23b-9aea-4bda-8033-92e63fe1e14b" class="k-header" data-role="columnsorter"&gt;&lt;a class="k-link" href="#"&gt;Approved By&lt;/a&gt;&lt;/th&gt;<br/>
+                 &lt;/tr&gt;<br/>
+                &lt;/thead&gt;<br/>
+               &lt;/table&gt;<br/>
+              &lt;/div&gt;<br/>
+             &lt;/div&gt;<br/>
+             &lt;div class="k-grid-content" style="height: 475px;"&gt;<br/>
+              &lt;table role="grid" style="height: auto;"&gt;<br/>
+               &lt;colgroup&gt;<br/>
+                &lt;col style="width:40px"&gt;<br/>
+                &lt;col style="width:80px"&gt;<br/>
+                &lt;col style="width:150px"&gt;<br/>
+                &lt;col style="width:90px"&gt;<br/>
+                &lt;col style="width:100px"&gt;<br/>
+                &lt;col style="width:90px"&gt;<br/>
+                &lt;col style="width:90px"&gt;<br/>
+                &lt;col style="width:90px"&gt;<br/>
+                &lt;col style="width:70px"&gt;<br/>
+                &lt;col style="width:70px"&gt;<br/>
+                &lt;col style="width:90px"&gt;<br/>
+               &lt;/colgroup&gt;<br/>
+               &lt;tbody role="rowgroup"&gt;&lt;/tbody&gt;<br/>
+              &lt;/table&gt;<br/>
+              &lt;div class="k-grid-content-expander" style="width: 1311px;"&gt;&lt;/div&gt;<br/>
+             &lt;/div&gt;<br/>
+            &lt;/div&gt; <br/>
+            &lt;input type="hidden" name="ctl00$ContentPlaceHolder1$hdnEmpGatePassList" id="hdnEmpGatePassList"&gt; <br/>
+           &lt;/div&gt; <br/>
+          &lt;/div&gt; <br/>
+         &lt;/div&gt; <br/>
+        &lt;/div&gt; <br/>
+       &lt;/div&gt; <br/>
+      &lt;/div&gt; <br/>
+     &lt;/div&gt; <br/>
+    &lt;/div&gt; <br/>
+   &lt;/div&gt; <br/>
+  &lt;/form&gt; <br/>
+  &lt;div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"&gt;&lt;/div&gt;<br/>
+ &lt;/body&gt;<br/>
+&lt;/html&gt;</code></pre></div></body></html>
